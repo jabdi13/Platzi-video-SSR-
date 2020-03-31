@@ -1,13 +1,13 @@
 .header {
   width: 100%;
   height: 80px;
-  background: #21c08b;
+  background: #8f57fd;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.header-isHome {
-  background: #8F57FD;
+.isLogin, .isRegister {
+  background: #21c08b;
 }
 .header__img {
   width: 200px;

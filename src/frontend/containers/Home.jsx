@@ -5,10 +5,12 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import '../assets/styles/App.scss';
+import Header from "../components/Header";
 
 const Home = ({ myList, trends, originals }) => {
   return (
     <>
+      <Header />
       <Search isHome />
       {myList.length < 1 && trends.length < 1 && originals.length < 1 && (
         <h1 className="main__notFoundTitle">No se encontrarón resultados</h1>

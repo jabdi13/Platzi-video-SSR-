@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { registerUser } from '../actions';
 import '../assets/styles/components/Register.scss';
+import Header from "../components/Header";
 
 const Register = (props) => {
 
@@ -25,42 +26,45 @@ const Register = (props) => {
   };
 
   return (
-    <section className="register">
-      <section className="register__container">
-        <h2>Regístrate</h2>
-        <form className="register__container--form" action="" onSubmit={handleSubmit}>
-          <input
-            name="name"
-            aria-label="Nombre"
-            className="login__input"
-            type="text"
-            placeholder="Nombre"
-            onChange={handleInput}
-            required
-          />
-          <input
-            name="email"
-            aria-label="Correo"
-            className="login__input"
-            type="text"
-            placeholder="Correo"
-            onChange={handleInput}
-            required
-          />
-          <input
-            name="password"
-            aria-label="Contraseña"
-            className="login__input"
-            type="password"
-            placeholder="Contraseña"
-            onChange={handleInput}
-            required
-          />
-          <button type="submit" className="button">Regístrarme</button>
-        </form>
-        <p className="register__container--register"><Link to="/login">Iniciar sesión</Link></p>
+    <>
+      <Header isRegister />
+      <section className="register">
+        <section className="register__container">
+          <h2>Regístrate</h2>
+          <form className="register__container--form" action="" onSubmit={handleSubmit}>
+            <input
+              name="name"
+              aria-label="Nombre"
+              className="login__input"
+              type="text"
+              placeholder="Nombre"
+              onChange={handleInput}
+              required
+            />
+            <input
+              name="email"
+              aria-label="Correo"
+              className="login__input"
+              type="text"
+              placeholder="Correo"
+              onChange={handleInput}
+              required
+            />
+            <input
+              name="password"
+              aria-label="Contraseña"
+              className="login__input"
+              type="password"
+              placeholder="Contraseña"
+              onChange={handleInput}
+              required
+            />
+            <button type="submit" className="button">Regístrarme</button>
+          </form>
+          <p className="register__container--register"><Link to="/login">Iniciar sesión</Link></p>
+        </section>
       </section>
-    </section>
+    </>
   );
 };
 

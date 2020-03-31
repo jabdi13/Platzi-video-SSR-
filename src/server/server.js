@@ -8,16 +8,7 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios');
 import webpack from 'webpack';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { renderRoutes } from 'react-router-config';
-import { StaticRouter } from 'react-router-dom';
-import serverRoutes from '../frontend/routes/serverRoutes';
-import reducer from '../frontend/reducers'
-import initialState from '../frontend/initialState';
-import Layout from '../frontend/components/Layout';
-import getManifest from './getManifest';
+import main from './routes/main';
 
 const { config } = require("./config");
 
@@ -34,10 +25,6 @@ if (config.dev) {
     app.use(webpackDevMiddleware(compiler, serverConfig));
     app.use(webpackHotMiddleware(compiler));
 } else {
-    app.use((req, res, next) => {
-        if (!req.hashManifest) req.hashManifest = getManifest();
-        next();
-    });
     app.use(express.static(`${__dirname}/public`));
     app.use(helmet());
     app.use(helmet.permittedCrossDomainPolicies());
@@ -70,51 +57,7 @@ require('./utils/auth/strategies/linkedin');
 // Facebook strategy
 require('./utils/auth/strategies/facebook');
 
-const setResponse = (html, preloadedState, manifest) => {
-    const mainStyles = manifest ? manifest['main.css'] : 'assets/main.css';
-    const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js';
-    const vendorBuild = manifest ? manifest['vendors.js'] : 'assets/vendor.js';
-
-    return (`
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link type="text/css" rel="stylesheet" href="${mainStyles}">
-        <title>Platzi Video</title>
-    </head>
-    <body>
-        <div id="app">${html}</div>
-        <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-        /</g,
-        '\\u003c'
-    )}
-        </script>
-        <script src="${mainBuild}" type="text/javascript"></script>
-        <script src="${vendorBuild}" type="text/javascript"></script>
-    </body>
-    </html>
-  `);
-};
-
-const renderApp = (req, res) => {
-    const store = createStore(reducer, initialState);
-    const preloadedState = store.getState();
-    const html = renderToString(
-        <Provider store={store}>
-        <StaticRouter location={req.url} context={{}}>
-<Layout>
-    {renderRoutes(serverRoutes)}
-    </Layout>
-    </StaticRouter>
-    </Provider>
-);
-
-    res.send(setResponse(html, preloadedState, req.hashManifest));
-};
-
-app.get('*', renderApp);
+app.get('*', main);
 
 app.post("/auth/sign-in", async function(req, res, next) {
   passport.authenticate('basic', function(error, data) {

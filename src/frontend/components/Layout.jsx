@@ -7,9 +7,8 @@ const Layout = ({ children }) => {
   const location = useLocation();
   return (
     <div className="App">
-      <Header isHome={location.pathname === '/'} />
       {children}
-      <Footer isHome={location.pathname === '/'} />
+      <Footer />
     </div>
   );
 };
