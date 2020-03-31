@@ -72,7 +72,7 @@ require('./utils/auth/strategies/facebook');
 
 const setResponse = (html, preloadedState, manifest) => {
     const mainStyles = manifest ? manifest['main.css'] : 'assets/main.css';
-    const mainBuild = manifest ? manifest['main.js'] : 'assets/main.js';
+    const mainBuild = manifest ? manifest['main.js'] : 'assets/app.js';
     const vendorBuild = manifest ? manifest['vendors.js'] : 'assets/vendor.js';
 
     return (`
@@ -114,7 +114,7 @@ const renderApp = (req, res) => {
     res.send(setResponse(html, preloadedState, req.hashManifest));
 };
 
-app.get('/', renderApp);
+app.get('*', renderApp);
 
 app.post("/auth/sign-in", async function(req, res, next) {
   passport.authenticate('basic', function(error, data) {
@@ -145,13 +145,18 @@ app.post("/auth/sign-up", async function(req, res, next) {
   const { body: user } = req;
 
   try {
-    await axios({
+    const { data } = await axios({
       url: `${config.apiUrl}/api/auth/sign-up`,
       method: 'post',
       data: user
     });
 
-    res.status(201).json({ message: 'user created' });
+    res.status(201).json({
+        message: 'user created',
+        name: user.name,
+        email: user.email,
+        id: data.data
+    });
   } catch (error) {
     next(error);
   }
