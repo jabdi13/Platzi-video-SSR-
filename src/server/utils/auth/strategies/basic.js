@@ -28,4 +28,4 @@ passport.use(
             cb(error);
         }
     })
-)
+);

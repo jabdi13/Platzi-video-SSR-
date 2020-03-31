@@ -1,0 +1,18 @@
+@import "./Vars.scss";
+@import "./Media.scss";
+
+body {
+  margin: 0;
+  background-color: $main-color;
+  font-family: $theme-font;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main__notFoundTitle {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+}
