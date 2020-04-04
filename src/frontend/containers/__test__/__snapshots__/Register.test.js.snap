@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register component Match Snapshot 1`] = `
+Array [
+  <header
+    className="header isRegister"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Platzi vídeo logo"
+        className="header__img"
+        src="test-file-stubs"
+      />
+    </a>
+    <div
+      className="header__menu"
+    >
+      <div
+        className="header__menu--profile"
+      >
+        <img
+          alt="Avatar logo"
+          src="test-file-stubs"
+        />
+        <p>
+          Perfil
+        </p>
+      </div>
+      <ul>
+        <li>
+          <a
+            href="/login"
+            onClick={[Function]}
+          >
+            Iniciar sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>,
+  <section
+    className="register"
+  >
+    <section
+      className="register__container"
+    >
+      <h2>
+        Regístrate
+      </h2>
+      <form
+        action=""
+        className="register__container--form"
+        onSubmit={[Function]}
+      >
+        <input
+          aria-label="Nombre"
+          className="login__input"
+          name="name"
+          onChange={[Function]}
+          placeholder="Nombre"
+          required={true}
+          type="text"
+        />
+        <input
+          aria-label="Correo"
+          className="login__input"
+          name="email"
+          onChange={[Function]}
+          placeholder="Correo"
+          required={true}
+          type="text"
+        />
+        <input
+          aria-label="Contraseña"
+          className="login__input"
+          name="password"
+          onChange={[Function]}
+          placeholder="Contraseña"
+          required={true}
+          type="password"
+        />
+        <button
+          className="button"
+          type="submit"
+        >
+          Regístrarme
+        </button>
+      </form>
+      <p
+        className="register__container--register"
+      >
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+          Iniciar sesión
+        </a>
+      </p>
+    </section>
+  </section>,
+]
+`;
