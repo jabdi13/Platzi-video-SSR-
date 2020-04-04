@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginRequest } from '../actions';
+import { loginUser } from '../actions';
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
 import '../assets/styles/components/Login.scss';
@@ -21,8 +21,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginRequest(form);
-    props.history.push('/');
+    props.loginUser(form, '/');
   };
 
   return (
@@ -39,6 +38,7 @@ const Login = (props) => {
               type="text"
               placeholder="Correo"
               onChange={handleInput}
+              required
             />
             <input
               name="password"
@@ -47,8 +47,9 @@ const Login = (props) => {
               type="password"
               placeholder="Contraseña"
               onChange={handleInput}
+              required
             />
-            <button type="button" className="button">Iniciar sesión</button>
+            <button type="submit" className="button">Iniciar sesión</button>
             <div className="login__container--remember-me">
               <label htmlFor="cbox1">
                 <input type="checkbox" id="cbox1" value="checkbox" />
@@ -80,7 +81,7 @@ const Login = (props) => {
 };
 
 const mapDispatchToProps = {
-  loginRequest,
+  loginUser,
 };
 
 export default connect(null, mapDispatchToProps)(Login);

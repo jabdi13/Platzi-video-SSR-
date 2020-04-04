@@ -33,9 +33,9 @@ const reducer = (state, action) => {
         [],
       };
     case 'SEARCH_VIDEO':
-      if (action.payload === '') {
-        return { ...state };
-      }
+      // if (action.payload === '') {
+      //   return { ...state };
+      // }
       return {
         ...state,
         searchText: action.payload,

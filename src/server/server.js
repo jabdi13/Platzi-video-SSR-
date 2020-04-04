@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios');
 import webpack from 'webpack';
 import React from 'react';
-import main from './routes/main';
+const main = require('./routes/main');
 
 const { config } = require("./config");
 
@@ -76,7 +76,7 @@ app.post("/auth/sign-in", async function(req, res, next) {
           secure: !config.dev
         });
 
-        res.status(200).json(user);
+        res.status(200).json(user.user);
       })
     } catch (error) {
       next(error);
