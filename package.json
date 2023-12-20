@@ -25,7 +25,7 @@
     "@babel/polyfill": "^7.8.7",
     "@hapi/boom": "^7.4.2",
     "asset-require-hook": "^1.2.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
